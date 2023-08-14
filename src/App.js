@@ -1,23 +1,24 @@
-import logo from './logo.svg';
+
+import { useState } from 'react';
 import './App.css';
+import Banner from './components/Banner';
+import Formulario from './components/Formulario';
+import Galeria from './components/Galeria';
+
 
 function App() {
+  const galerias = [ ]
+  const [imagens, setImagens] = useState([])
+
+  const aoNovaImagemAdicionada = (imagem) => {
+    setImagens([...imagens, imagem])
+    console.log(imagens)
+  }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Banner />
+      <Formulario aoImagemCadastrado={imagem => aoNovaImagemAdicionada (imagem) } />
+      <Galeria />
     </div>
   );
 }
